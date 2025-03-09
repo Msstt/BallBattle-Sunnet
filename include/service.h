@@ -3,6 +3,7 @@
 #include <string>
 
 #include "service_msg.h"
+#include "socket_msg.h"
 #include "prelude.h"
 
 class Sunnet;
@@ -22,6 +23,13 @@ class Service {
   std::shared_ptr<BaseMsg> popMsg();
   void processMsg(int max);
   bool processMsg();
+
+  void onServiceMsg(std::shared_ptr<ServiceMsg> msg);
+  void onAcceptMsg(std::shared_ptr<SocketAcceptMsg> msg);
+  void onRWMsg(std::shared_ptr<SocketRWMsg> msg);
+  void onSocketData(socket_id fd, const char* buffer, int len);
+  void onSocketWritable(socket_id fd);
+  void onSocketClose(socket_id fd);
 
   service_id id_;
   std::shared_ptr<std::string> type_;

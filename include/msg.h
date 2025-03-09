@@ -7,12 +7,8 @@ class BaseMsg {
  public:
   virtual ~BaseMsg() = default;
 
-  enum TYPE {
-    SERVICE,
-  };
+  enum TYPE { SERVICE, SOCKET_ACCEPT, SOCKET_RW };
 
   TYPE type_;
   service_id service_id_;
-  std::shared_ptr<char> buffer_;
-  size_t size_;
 };
